@@ -1,0 +1,124 @@
+### test
+GET https://603cca51f4333a0017b68509.mockapi.io/todos
+
+### aaa
+GET https://www.google.com
+
+
+### ch3_first_endpoint_01.py
+GET http://localhost:7777/
+
+### ch3_path_parameters_01  200
+GET http://localhost:7777/users/13
+
+### ch3_path_parameters_01  404
+GET http://localhost:7777/users/
+
+### ch3_path_parameters_01  422 Unprocessable Entity
+GET http://localhost:7777/users/abc
+
+
+### ch3_path_parameters_02  200
+GET http://localhost:7777/users/asd/13
+
+
+### ch3_path_parameters_03  200
+GET http://localhost:7777/users/standard/13
+### ch3_path_parameters_03  422 Unprocessable Entity
+GET http://localhost:7777/users/asd/13
+# "msg": "value is not a valid enumeration member; permitted: 'standard', 'admin'",
+
+
+### ch3_path_parameters_04  200
+GET http://localhost:7777/users/1
+### ch3_path_parameters_04  422 Unprocessable Entity
+GET http://localhost:7777/users/1
+#       "msg": "ensure this value is greater than or equal to 1",
+
+
+### ch3_path_parameters_05  200
+GET http://localhost:7777/license-plate/321321321
+### ch3_path_parameters_05  422 Unprocessable Entity
+GET http://localhost:7777/license-plate/1111
+#       "msg": "ensure this value has at least 9 characters",
+
+
+### ch3_path_parameters_06  200
+GET http://localhost:7777/license-plate/AB-123-CD
+### ch3_path_parameters_06  422 Unprocessable Entity
+GET http://localhost:7777/license-plate/1111
+#      "msg": "string does not match regex \"^\\w{2}-\\d{3}-\\w{2}$\"",
+
+## query parameters
+### ch3_query_parameters_01  200
+GET http://localhost:7777/users/?page=5&size=100
+### ch3_query_parameters_01 200 default
+GET http://localhost:7777/users/
+### ch3_query_parameters_01 200 partial default
+GET http://localhost:7777/users/?size=500
+
+
+### ch3_query_parameters_02  200
+GET http://localhost:7777/users?format=short
+### ch3_query_parameters_02  422 Unprocessable Entity
+GET http://localhost:7777/users?format=long
+#       "msg": "value is not a valid enumeration member; permitted: 'short', 'full'",
+### ch3_query_parameters_02  422 Unprocessable Entity
+GET http://localhost:7777/users?f
+#        "msg": "field required",
+
+
+### ch3_query_parameters_03  200 default
+GET http://localhost:7777/users
+### ch3_query_parameters_03  200 custom
+GET http://localhost:7777/users?page=22&size=100
+### ch3_query_parameters_03  422 Unprocessable Entity
+GET http://localhost:7777/users?page=0
+### ch3_query_parameters_03  422 Unprocessable Entity
+GET http://localhost:7777/users?size=101
+
+
+# request body
+### ch3_request_body_01  200 OK
+POST http://localhost:7777/users
+Content-Type: application/json
+
+{"age": "30", "name": "John"}
+
+### ch3_request_body_02  200 OK
+POST http://localhost:7777/users
+Content-Type: application/json
+
+{"age": 43212, "name": "John"}
+
+### ch3_request_body_02  200 OK
+POST http://localhost:7777/users
+Content-Type: application/json
+
+{"age": 43212, "name": 11111}
+
+
+### ch3_request_body_03  200 OK
+POST http://localhost:7777/users
+Content-Type: application/json
+
+{
+  "user": {
+    "age": 30, "name": "Jesus"
+  },
+  "company": {
+    "name": "ACME"
+  }
+}
+
+
+### ch3_request_body_04  200 OK
+POST http://localhost:7777/users
+Content-Type: application/json
+
+{
+  "user": {
+    "age": 30, "name": "Jesus"
+  },
+  "priority": 3
+}
