@@ -193,3 +193,25 @@ GET http://localhost:7777/header
 ### ch3_headers_cookies_03
 GET http://localhost:7777/cookies
 Cookie: hello=Who ate my cookies?
+
+
+////////////////////////////////////////////////////////
+### ch3_request_object_01
+GET http://localhost:7777/
+
+
+////////////////////////////////////////////////////////
+### ch3_response_path_parameters_01
+POST http://localhost:7777/posts
+Content-Type: application/json
+
+{"title": "postman"}
+
+### ch3_response_path_parameters_02  204 No Content
+DELETE http://localhost:7777/posts/1
+
+### ch3_response_path_parameters_03
+GET http://localhost:7777/posts/1
+
+### ch3_response_path_parameters_04
+GET http://localhost:7777/posts/public-posts/1
