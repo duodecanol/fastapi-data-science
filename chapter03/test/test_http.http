@@ -122,3 +122,59 @@ Content-Type: application/json
   },
   "priority": 3
 }
+
+
+### ch3_form_data_01  200 OK
+POST http://localhost:8888/users
+Accept: */*
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+
+name=John&age=40
+
+
+### ch3_file_uploads_01  404 Not Found
+POST http://localhost:8888/files file@./assets/cat.jpg
+Content-Type: application/json
+
+### ch3_file_uploads_01
+POST http://localhost:8888/files
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="cat.jpg"
+
+< ../../assets/cat.jpg
+
+////////////////////////////////////////////////////////
+### ch3_file_uploads_02
+POST http://localhost:8888/files
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="cat.jpg"
+Content-Type: image/jpeg
+
+< ../../assets/cat.jpg
+
+
+////////////////////////////////////////////////////////
+### ch3_file_uploads_03
+POST http://localhost:8888/files
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="files"; filename="cat.jpg"
+Content-Type: image/jpeg
+
+< ../../assets/cat.jpg
+--boundary
+Content-Disposition: form-data; name="files"; filename="cat.jpg"
+Content-Type: image/jpeg
+
+< ../../assets/cat.jpg
+--boundary
+Content-Disposition: form-data; name="files"; filename="cat.jpg"
+Content-Type: image/jpeg
+
+< ../../assets/cat.jpg
