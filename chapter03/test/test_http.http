@@ -178,3 +178,18 @@ Content-Disposition: form-data; name="files"; filename="cat.jpg"
 Content-Type: image/jpeg
 
 < ../../assets/cat.jpg
+
+////////////////////////////////////////////////////////
+### ch3_headers_cookies_01
+GET http://localhost:7777/hello
+Hello: World
+
+////////////////////////////////////////////////////////
+### ch3_headers_cookies_02
+GET http://localhost:7777/header
+#  "user_agent": "Apache-HttpClient/4.5.13 (Java/11.0.13)"
+
+////////////////////////////////////////////////////////
+### ch3_headers_cookies_03
+GET http://localhost:7777/cookies
+Cookie: hello=Who ate my cookies?
